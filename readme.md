@@ -10,7 +10,7 @@ Testing
 Question 1: 
 navigate to /problem1 folder 
     ````
-    node sum_to_n.js 
+    node sum_to_n.js
     ````
 Question 4: 
 navigate to /problem4 folder 
