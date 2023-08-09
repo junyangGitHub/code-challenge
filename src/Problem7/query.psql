@@ -12,7 +12,7 @@ JOIN
 WHERE
     trades.block_height > 730000
 GROUP BY
-    balances.address
+    balances.address /* each row represents the data with a specific denom, so we have to look at all 3 denoms instead of just one */ 
 HAVING
     SUM(CASE
         WHEN balances.denom = 'usdc' THEN balances.amount * 0.000001
