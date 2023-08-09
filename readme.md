@@ -1,10 +1,12 @@
-# Switcheo Code Challenge #1 #
+# Switcheo Code Challenge
 
-Note that if you fork this repository, your responses may be publicly linked to this repo.  
-Please submit your application along with the solutions attached or linked.   
+To install the necessary javascript dependencies and run the tests, 
+    ````
+    cd src 
+    npm install 
+    ````
+Done by: Lim Jun Yang 
 
-It is important that you minimally attempt the problems, even if you do not arrive at a working solution.
+## Note: 
 
-## Submission ##
-You can either provide a link to an online repository, attach the solution in your application, or whichever method you prefer.
-We're cool as long as we can view your solution without any pain.
+There is a diagram from problem 6 under /src/problem6/infra.png

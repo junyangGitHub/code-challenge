@@ -8,7 +8,10 @@ AWS SNS and SQS: The service forwards the received requests to an AWS SNS topic,
 
 AWS Lambda Functions: Messages in the SQS queue trigger AWS Lambda functions. These functions are responsible for securely signing the transaction data using appropriate private keys. These private keys can be stored in AWS Key Management Service. Access to these keys can be defined using Terraform and assigned to the necessary IAM Roles and AWS Accounts. The signed data is then posted back to another endpoint.
 
-Validation and Processing: The new endpoint (calling it endpoint 2) sends the signed transaction data to an AWS Lambda function for validation and processing. This step ensures the validity and integrity of the data before broadcasting.
+Validation and Processing: The new endpoint (calling it endpoint 2) sends the signed transaction data to an AWS Lambda function for validation and processing. This step ensures the validity and integrity of the data before broadcasting. 
+
+Confirmation and adding to blockchain: 
+After undergoing validation, the information is transmitted via an SNS Topic to an SQS queue. Load balancers distribute this data across multiple deployed servers, where miners compete to incorporate the information into the blockchain. The presence of the SQS queue serves as a safeguard, preventing data loss in case of server downtime. Once the data receives confirmation and is successfully added to the blockchain, the respective database record is updated to reflect confirmation, marking the completion of the process.
 
 ## Why AWS Lambda? 
 AWS Lambda is event-driven, hence different services can trigger AWS Lambda when needed. Furthermore, AWS Lambda is a good choice due to its scalability. Based on the messages in the queue, AWS Lambda instances can scale up or down based on the necessary workload. Also, AWS Lambda is serverless, and with some of the services that we are using, they only handle straightforward functions thus provisioning and maintaining of these resources may not be necessary. 
@@ -43,4 +46,4 @@ Administrators can access the list of failed transactions through the admin inte
 For effective monitoring, AWS CloudWatch is utilized to track the service's status, metrics, and any encountered errors. This enables administrators to promptly address issues and ensure the overall health and performance of the Transaction Broadcaster Service.
 Alarms can be set up to notify support and/or development teams of potential issues that arise, such as database connection errors or SQS queue size being too large (leading to a processing bottleneck). This way, the  team can take proactive measures to maintain the stability and reliability of the Transaction Broadcaster Service. 
 
-A high-level diagram of the infrastructure is in the same folder as infra.jpeg
+A high-level diagram of the infrastructure is in the same folder as infra.png
