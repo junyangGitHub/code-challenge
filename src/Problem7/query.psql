@@ -1,5 +1,5 @@
 SELECT
-    balances.address,
+    balances.address, 
     SUM(CASE
         WHEN balances.denom = 'usdc' THEN balances.amount * 0.000001
         WHEN balances.denom = 'swth' THEN balances.amount * 0.00000005
