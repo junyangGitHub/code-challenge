@@ -27,13 +27,13 @@ Scalability and Auto-Scaling: SQS can handle varying transaction loads and acts 
 
 The service implements robust error-handling mechanisms:
 
-1. # Automatic Retries
+1. ### Automatic Retries
 For failures during signing, validation, or broadcasting, the service employs automatic retries with exponential backoff (similar to those used in network protocols e.g Ethernet) to avoid overwhelming the blockchain network. Since 95% of the time a blockchain node responds with a success code within 20-30 seconds, we can set the minimum time to retry to be a little bit above 30 seconds (eg. 35 seconds) to minimise the number of retries but also maximise the number of successful responses with each retry. For each subsequent retry, use exponential backoff to increase the retry interval gradually. Eg for each retry +10s. 
 
-2. # Persistent Failure Handling
+2. ### Persistent Failure Handling
 Persistent failures, such as blockchain nodes that respond with an error or after certain number of retries, say 16, are logged, and the failed transactions are stored in a dedicated database table or dead-letter queue. Administrators can inspect and resolve these failures manually through the user-friendly admin interface.
 
-3. # User Interface for Status Tracking
+3. ### User Interface for Status Tracking
 To track transaction status in real time, the service stores status details in the database. The user-friendly UI interface provides administrators with a comprehensive list of transactions along with their unique identifiers, status, and relevant data.
 
 ## Manual Retry of Failed Broadcasts:
