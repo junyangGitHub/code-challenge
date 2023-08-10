@@ -13,9 +13,9 @@ const SWTHAbi = [
 const SWTHContract = new ethers.Contract(SWTHToken, SWTHAbi, provider); 
 const getBalances = async () => {
     const balances: { [address: string]: ethers.BigNumberish } = {}
-    for (let i = 0; i < lookups.length; i++) {
-        const balance = await SWTHContract.balanceOf(lookups[i]);
-        balances[lookups[i]] = balance;
+    for (const lookup of lookups) {
+        const balance = await SWTHContract.balanceOf(lookup);
+        balances[lookup] = balance;
     }
     return balances;
 }
